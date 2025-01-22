@@ -297,6 +297,7 @@ final class CParser(AST) : Parser!AST
         case TOK.sizeof_:
         case TOK._Generic:
         case TOK._assert:
+        case TOK.nullptr:
         Lexp:
             auto exp = cparseExpression();
             if (token.value == TOK.identifier && exp.op == EXP.identifier)
@@ -862,6 +863,11 @@ final class CParser(AST) : Parser!AST
             e = parseAssignExp();
             check(TOK.rightParenthesis);
             e = new AST.AssertExp(loc, e, null);
+            break;
+
+        case TOK.nullptr:
+            nextToken();
+            e = new AST.NullExp(loc);
             break;
 
         default:
