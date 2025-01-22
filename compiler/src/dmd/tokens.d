@@ -255,6 +255,7 @@ enum TOK : ubyte
 
     // C only keywords
     inline,
+    nullptr,
     register,
     restrict,
     signed,
@@ -565,6 +566,7 @@ private immutable TOK[] keywords =
 
     // C only keywords
     TOK.inline,
+    TOK.nullptr,
     TOK.register,
     TOK.restrict,
     TOK.signed,
@@ -616,7 +618,7 @@ static immutable TOK[TOK.max + 1] Ckeywords =
     {
         TOK[TOK.max + 1] tab = identifier;  // default to identifier
         enum Ckwds = [ auto_, break_, case_, char_, const_, continue_, default_, do_, float64, else_,
-                       enum_, extern_, float32, for_, goto_, if_, inline, int32, int64, register,
+                       enum_, extern_, float32, for_, goto_, if_, inline, int32, int64, nullptr, register,
                        restrict, return_, int16, signed, sizeof_, static_, struct_, switch_, typedef_,
                        union_, unsigned, void_, volatile, while_, asm_, typeof_,
                        _Alignas, _Alignof, _Atomic, _Bool, _Complex, _Generic, _Imaginary, _Noreturn,
@@ -886,6 +888,7 @@ extern (C++) struct Token
         TOK.typedef_  : "typedef",
         TOK.unsigned  : "unsigned",
         TOK.volatile  : "volatile",
+        TOK.nullptr   : "nullptr",
         TOK._Alignas  : "_Alignas",
         TOK._Alignof  : "_Alignof",
         TOK._Atomic   : "_Atomic",
